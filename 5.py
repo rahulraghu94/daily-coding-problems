@@ -11,12 +11,14 @@ You can modify the input array in-place.
 """
 
 
-_list = [3, 4, -1, 1]
-_list = [1, 2, 0]
+_list = [2, 4, -8, 10, 15, 0, 0 , -1, 1]
 
-
+# Remove duplicates in the list
 _list.sort()
+_list = set(_list)
+
 
 for i in range(1, (len(_list)+1)):
     if i not in _list:
         print(i)
+        break
