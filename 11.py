@@ -17,6 +17,7 @@ Stil a TODO
 
 _words = ['deer', 'dear', 'dame']
 
+
 class Node(object):
     def __init__(self, val):
         self.val = val
@@ -33,7 +34,6 @@ class Node(object):
         if self.end_of_word:
             self._word = val
 
-
     @property
     def children(self):
         return [x.val for x in self._children.values()]
@@ -48,8 +48,6 @@ class Node(object):
 
 def add_word(root, word):
     _cur = root
-
-    word = "{}".format(word)
 
     for char in word:
         if char in _cur.children:
@@ -79,7 +77,6 @@ def find_all_words(root, prefix):
     _form_all_words(_cur)
 
 
-
 root = Node("*")
 
 add_word(root, "dear")
@@ -87,6 +84,9 @@ add_word(root, "deer")
 add_word(root, "dame")
 
 add_word(root, "phone")
+# Can it handle word overflows??
+add_word(root, "phoneded")
+# Yes it can :D
 add_word(root, "photo")
 add_word(root, "phat")
 
