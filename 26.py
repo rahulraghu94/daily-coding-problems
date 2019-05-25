@@ -48,7 +48,29 @@ class LinkedList(object):
             print(cur.val)
             cur = cur.next
 
+    def __iter__(self):
+        cur = self.head
+        count = 0
+        while cur.next:
+            count += 1
+            cur = cur.next
+            yield cur.val
+
+    def __getitem__(self, index):
+        cur = self.head
+        count = 0
+        while cur.next:
+            if count == index:
+                return cur
+            count += 1
+            cur = cur.next
+
     def remove(self, index):
+        to_remove = self[index]
+        to_remove.prev.next = to_remove.next
+        return to_remove
+
+    def traditional_remove(self, index):
         cur = self.head
         count = 0
         while cur.next:
@@ -61,10 +83,11 @@ class LinkedList(object):
 
 list_elem = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-list = LinkedList()
+linked_list = LinkedList()
 for item in list_elem:
-    list.add(item)
+    linked_list.add(item)
 
-list.traverse()
-print("Removed: {}".format(list.remove(4).val))
-list.traverse()
+print(list(linked_list))
+print("Removed: {}".format(linked_list.remove(4).val))
+print(list(linked_list))
+
